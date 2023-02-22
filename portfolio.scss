@@ -1,0 +1,210 @@
+@use "colors" as *;
+@use "navi";
+@use "footer";
+@use "./header" as *;
+
+@mixin flex-box($direction) {
+  display: flex;
+  flex-direction: $direction;
+  justify-content: center;
+  align-items: center;
+}
+
+* {
+  font-family: "Raleway", sans-serif;
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+main {
+  @include flex-box(column);
+  width: 100%;
+  margin-top: 5rem;
+  & .slider-container {
+    @include flex-box(column);
+    width: 90%;
+    height:auto;
+    margin: 0 auto;
+    & .slider-wrapper {
+      position: relative;
+      width:50vw;
+      height:50vh;
+      margin: 0 auto;
+      margin-top: 1em;
+      overflow: hidden;
+      flex-grow: 1;
+      border-radius: 0.5em;
+      & .slides {
+        display: flex;
+        width: 100%;
+        height:100%;
+        aspect-ratio: 16 / 9;
+        overflow-x: auto;
+        scroll-snap-type: x mandatory;
+        scroll-behavior: smooth;
+        /*  box-shadow: 0 1.5rem 3rem -0.75rem hsla(0, 0%, 0%, 0.25); */
+        border-radius: 0.5rem;
+        scrollbar-width: none; /* Firefox */
+        -ms-overflow-style: none; /* Internet Explorer 10+ */
+        &::-webkit-scrollbar {
+          /*  Web-kit */
+          width: 0;
+          height: 0;
+        }
+        & .slide {
+          @include flex-box(column);
+          gap:.5em;
+          max-width: 100%;
+          max-height:fit-content;
+          flex: 1 0 100%;
+          scroll-snap-align: start;
+          background-position: center;
+          background-size:100% 100%;
+          background-repeat: no-repeat;
+          object-fit: cover;
+          & h2 {
+            color: $grey;
+            display: none;
+          }
+          & p {
+            width: 50%;
+            color: $grey;
+            text-align: center;
+            display: none;
+          }
+          & button {
+            display: none;
+            color: $alloy-orange;
+            background: transparent;
+            width: 5rem;
+            height: 2rem;
+            margin-top: 1rem;
+            padding: 0.2rem 1rem;
+            border: 2px solid $alloy-orange;
+            letter-spacing: 5px;
+            font-size: 1rem;
+            font-weight: bold;
+            cursor: pointer;
+            &:hover {
+              color: $white;
+              background-color: $alloy-orange;
+              transition: all 0.5s;
+            }
+          }
+          &:hover {
+            background-image:none !important;
+            & h2 {
+              display: block;
+              animation: slide-bottom 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94)
+                both;
+            }
+            & p {
+              display: block;
+              animation: slide-right 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94)
+                both;
+            }
+            & button {
+              display: block;
+              animation: slide-top 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94)
+                both;
+            }
+          }
+        }
+        & #slide-1 {
+          background-image: url(./Bilder/bild1.jpg);
+        }
+        & #slide-2 {
+          background-image: url(./Bilder/bild2.png);
+        }
+        & #slide-3 {
+          background-image: url(./Bilder/bild3.jpg);
+        }
+        & #slide-4 {
+          background-image: url(./Bilder/bild4.png);
+        }
+        & #slide-5 {
+          background-image: url(./Bilder/bild5.jpg);
+        }
+        & #slide-6 {
+          background-image: url(./Bilder/bild6.jpg);
+        }
+        & #slide-7 {
+          background-image: url(./Bilder/bild7.jpg);
+        }
+        & #slide-8 {
+          background-image: url(./Bilder/bild8.jpg);
+        }
+        & #slide-9 {
+          background-image: url(./Bilder/bild9.jpeg);
+        }
+        & #slide-10 {
+          background-image: url(./Bilder/bild10.png);
+        }
+        & .slider-nav {
+          @include flex-box(column);
+          height:fit-content;
+          padding: 0 .5em;
+          row-gap: .3rem;
+          position: absolute;
+          top:20%;
+          left:1em;
+          transform: translateX(-50%);
+          z-index: 1000;
+          & a {
+            width: 1rem;
+            height: 1rem;
+            border-radius: 50%;
+            background-color: $alloy-orange;
+            opacity: 0.5;
+            transition: opacity ease 250ms;
+            &:hover {
+              opacity: 1;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+footer {
+   position: absolute;
+   bottom: 0;
+ }
+
+
+@keyframes slide-bottom {
+  0% {
+    -webkit-transform: translateY(-100px);
+    transform: translateY(-100px);
+    opacity: 0;
+  }
+  100% {
+    -webkit-transform: translateY(0);
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+@keyframes slide-right {
+  0% {
+    -webkit-transform: translateX(-100px);
+    transform: translateX(-100px);
+    opacity: 0;
+  }
+  100% {
+    -webkit-transform: translateX(0);
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+@keyframes slide-top {
+  0% {
+    -webkit-transform: translateY(100px);
+    transform: translateY(100px);
+    opacity: 0;
+  }
+  100% {
+    -webkit-transform: translateY(0);
+    transform: translateY(0);
+    opacity: 1;
+  }
+}

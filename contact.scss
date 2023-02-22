@@ -1,0 +1,97 @@
+@use "colors" as *;
+@use "navi";
+@use "footer";
+@use "./header" as *;
+
+@mixin flex-box($direction) {
+  display: flex;
+  flex-direction: $direction;
+  justify-content: center;
+  align-items: center;
+}
+
+* {
+  font-family: "Raleway", sans-serif;
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+.header {
+    overflow: hidden;
+    clip-path: 0 0,
+             100% 0,
+             100% 80%,
+             50% 100%,
+            0 80%;
+}
+main {
+    margin-top: 1em;
+    height: 72vh;
+    background-color: $lightgrey;
+    gap: 1em ;
+  @include flex-box(column);
+  & .message { 
+    width: 70%;
+    padding: 1em;
+    form {
+        padding-top:1em; 
+      @include flex-box(column);
+      gap: 0.5em;
+      & label {
+        align-self: flex-start;
+      }
+      & input , & textarea {
+        padding:.5em;
+        width: 80%;
+      }
+      & #submit{
+        color: $alloy-orange;
+        background: transparent;
+        width: 15rem;
+        height: 3rem;
+        margin-top: 1rem;
+        padding: 0.2rem 1rem;
+        border: 2px solid $alloy-orange;
+        letter-spacing: 5px;
+        font-size: 1rem;
+        font-weight: bold;
+        cursor: pointer;
+        &:hover {
+            color:$white;
+            background: $alloy-orange;
+            transition: all .5s
+        }
+      }
+    }
+  }
+  .social-media-icons {
+        @include flex-box(row);
+        width: 50%;
+        gap: 1em;
+        a {
+            color:transparent;
+        }
+        & .media {
+          @include flex-box(row);
+          width: 3em;
+          height: 3em;
+          background-color: $darkcyan;
+          border-radius: 10px;
+          & i {
+            color: $white;
+            font-size: 2em;
+          }
+        }
+      }
+    }
+    @media screen and (min-width:768px) {
+    main{
+        @include flex-box(row);
+      }
+    }
+
+footer {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+}
