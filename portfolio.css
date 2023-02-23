@@ -308,7 +308,8 @@ main .slider-container .slider-wrapper .slides .slide button {
   display: none;
   color: #CA6702;
   background: transparent;
-  width: 5rem;
+  text-align: center;
+  width: 6rem;
   height: 2rem;
   margin-top: 1rem;
   padding: 0.2rem 1rem;
